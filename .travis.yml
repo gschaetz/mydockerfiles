@@ -1,0 +1,16 @@
+---
+sudo: required
+notifications:
+  email: true
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: test
+      script: ./test.sh
+      if: type IN (pull_request)
+
+    - stage: deploy
+      script: ./push.sh
+      if: type IN (push)
