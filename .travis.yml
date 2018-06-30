@@ -9,7 +9,7 @@ jobs:
   include:
     - stage: build_all
       script: ./build-all.sh
-      if: TRAVIS_EVENT_TYPE IN (cron)
+      if: env(TRAVIS_EVENT_TYPE) = cron
 
     - stage: test
       script: ./test.sh
