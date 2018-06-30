@@ -4,7 +4,7 @@ notifications:
   email: true
 services:
   - docker
-install: apt-get install parallel 
+install: sudo apt-get install parallel 
 jobs:
   include:
     - stage: build_all
