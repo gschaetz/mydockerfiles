@@ -1,10 +1,11 @@
 ---
+language: python
 sudo: required
 notifications:
   email: true
 services:
   - docker
-
+install: pip install parallel 
 jobs:
   include:
     - stage: build_all
