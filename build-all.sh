@@ -20,8 +20,11 @@ build_and_push(){
 	# on successful build, push the image
 	echo "                       ---                                   "
 	echo "Successfully built ${base}:${suite} with context ${build_dir}"
-	echo "                       ---                                   "
-
+	echo "                       ---            
+	
+	# login to docker hub
+	echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  
 	# try push a few times because notary server sometimes returns 401 for
 	# absolutely no reason
 	n=0
