@@ -9,7 +9,7 @@ jobs:
   include:
     - stage: build_all
       script: ./build-all.sh
-#      if: type = cron
+      if: type = cron
 
     - stage: test
       script: ./test.sh
