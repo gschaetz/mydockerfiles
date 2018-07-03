@@ -5,6 +5,7 @@ set -o pipefail
 SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 REPO_URL="gschaetz"
 JOBS=${JOBS:-2}
+BUILDNUM=${BUILDNUM: 1}
 
 ERRORS="$(pwd)/errors"
 
@@ -64,12 +65,49 @@ echo
 
 main(){
 	# get the dockerfiles
-	IFS=$'\n'
-	files=( $(find -L . -iname '*Dockerfile' | sed 's|./||' | sort) )
+	# IFS=$'\n'
+	# files=( $(find -L . -iname '*Dockerfile' | sed 's|./||' | sort) )
+	# unset IFS
+	# echo $files
+
+	images=''
+	count=$(curl https://registry.hub.docker.com/v2/repositories/gschaetz/?page=1 2>/dev/null |jq '."count"') > /dev/null 2>&1
+	count=$(($count / 10 ))
+	while [[ $i -le $count ]]
+	do 
+		i=$((i+1))
+		IFS=$'\n'
+		temp=( $(curl https://registry.hub.docker.com/v2/repositories/$REPO_URL/?page=$i  2>/dev/null|jq '.results[] | .last_updated+","+.name' | sed 's/"//g') ) > /dev/null 2>&1
+		unset IFS
+		if [[ -n $images ]]; then
+			images=("${images[@]}" "${temp[@]}")
+		else    
+			images=$temp
+		fi
+	done
+
+	IFS=$'\n' 
+	sortimages=($(sort <<< "${images[*]}") )
+	dockerfiles=($(find -L . -iname '*dockerfile' | sed 's|./||' | sort))
 	unset IFS
 
-
-	echo $files
+	n=0
+	for i in ${sortimages[@]}
+	do
+	image=$(echo $i | cut -d',' -f2)
+	for x in ${dockerfiles[@]}
+	do
+		docker=$(echo $x | cut -d'/' -f1)
+		if [[ $image == $docker ]]; then
+		files=("${files[@]}" "${x[@]}")
+		fi  
+	done
+	n=$[$n+1]
+	if [[ n -ge $BUILDNUM ]]; then
+		break
+	fi
+	done
+	echo ${files[@]}
 
 	# build all dockerfiles
 	echo "Running in parallel with ${JOBS} jobs."
