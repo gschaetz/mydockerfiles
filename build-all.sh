@@ -29,7 +29,7 @@ build_and_push(){
 	# absolutely no reason
 	n=0
 	until [ $n -ge 5 ]; do
-		docker push --disable-content-trust=false ${REPO_URL}/${base}:${suite} && break
+		docker push --disable-content-trust=true ${REPO_URL}/${base}:${suite} && break
 		echo "Try #$n failed... sleeping for 15 seconds"
 		n=$[$n+1]
 		sleep 15
