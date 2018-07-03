@@ -5,7 +5,7 @@ set -o pipefail
 SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 REPO_URL="gschaetz"
 JOBS=${JOBS:-2}
-BUILDNUM=${BUILDNUM: 1}
+BUILDNUM=${BUILDNUM:-1}
 
 ERRORS="$(pwd)/errors"
 
