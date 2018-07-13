@@ -7,7 +7,7 @@
 
 FROM centos:latest
 
-RUN yum update && yum install -y \
+RUN yum update -y && yum install -y \
     wget libXtst libxss1 \ 
     libXScrnSaver libsecret \
     libconfig-devel.x86_64 libappindicator lsb-core-noarch \
