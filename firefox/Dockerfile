@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
 	libasound2 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
+	pulseaudio \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
