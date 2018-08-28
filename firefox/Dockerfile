@@ -21,4 +21,4 @@ ENV LANG en-US
 
 COPY local.conf /etc/fonts/local.conf
 
-ENTRYPOINT [ "/usr/bin/firefox --disable-pulseaudio --enable-alsa" ]
+ENTRYPOINT [ "/usr/bin/firefox","--disable-pulseaudio","--enable-alsa" ]
