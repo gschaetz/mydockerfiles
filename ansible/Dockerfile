@@ -22,6 +22,7 @@ RUN builddeps=' \
 	&& apk --no-cache add \
 	ca-certificates \
 	python \
+	bash \
 	py-paramiko \
 	py-yaml \
 	py-jinja2 \
