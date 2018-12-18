@@ -7,13 +7,16 @@
 
 FROM centos:latest
 
+ARG VERSION=1.5.3
+ARG SUBVERSION=0.1
+
 RUN yum update -y && yum install -y \
     wget libXtst libxss1 \ 
     libXScrnSaver libsecret \
     libconfig-devel.x86_64 libappindicator lsb-core-noarch \
     GConf2 alsa-utils dbus-x11 gnome-keyring libgnome-keyring-devel && \
-    wget https://github.com/Foundry376/Mailspring/releases/download/1.2.1/mailspring-1.2.1-0.1.x86_64.rpm && \
-    rpm -i mailspring-1.2.1-0.1.x86_64.rpm && \
+    wget https://github.com/Foundry376/Mailspring/releases/download/${VERSION}/mailspring-${VERSION}-${SUBVERSION}.x86_64.rpm && \
+    rpm -i mailspring-${VERSION}-${SUBVERSION}.x86_64.rpm && \
     rm -rf /var/lib/apt/lists/* && \
     dbus-uuidgen >/etc/machine-id 
 
