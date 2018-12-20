@@ -100,9 +100,10 @@ main(){
 		docker=$(echo $x | cut -d'/' -f1)
 		if [[ $image == $docker ]]; then
 		files=("${files[@]}" "${x[@]}")
+		n=$[$n+1]
 		fi  
 	done
-	n=$[$n+1]
+	#n=$[$n+1]
 	if [[ n -ge $BUILDNUM ]]; then
 		break
 	fi
