@@ -10,7 +10,7 @@
 #    jess/vscode
 
 FROM debian:buster
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer "Gary Schaetz"
 
 # Tell debconf to run in non-interactive mode
 ENV DEBIAN_FRONTEND noninteractive
