@@ -6,27 +6,28 @@
 #		-v /usr/share/X11/xkb:/usr/share/X11/xkb/:ro \
 #		-v $HOME/.config/keepassxc:/root/.config/keepassxc \
 #		-e DISPLAY=unix$DISPLAY \
-#		keepassxc
+#		jess/keepassxc
 #
-FROM alpine:edge
+FROM alpine:latest
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
-ENV KEEPASSXC_VERSION 2.3.3
+ENV KEEPASSXC_VERSION 2.3.4
 
 RUN buildDeps=' \
-                automake \
-				argon2-dev \
-                bash \
-                cmake \
-				curl-dev \
-                g++ \
-                gcc \
-                git \
-                libgcrypt-dev \
-                libmicrohttpd-dev \
-                make \
-                qt5-qtbase-dev \
-                qt5-qttools-dev \
+		automake \
+		argon2-dev \
+		bash \
+		cmake \
+		curl-dev \
+		expat \
+		g++ \
+		gcc \
+		git \
+		libgcrypt-dev \
+		libmicrohttpd-dev \
+		make \
+		qt5-qtbase-dev \
+		qt5-qttools-dev \
 	' \
 	set -x \
 	&& apk --no-cache add \
