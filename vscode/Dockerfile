@@ -3,7 +3,7 @@
 #
 # docker run -d \
 #    -v /tmp/.X11-unix:/tmp/.X11-unix \
-#    -v $HOME:/home/user \
+#    -v $HOME: \
 #    -e DISPLAY=unix$DISPLAY \
 #    --device /dev/dri \
 #    --name vscode \
@@ -56,7 +56,7 @@ RUN apt-get update && apt-get -y install \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV HOME /home/user
+ENV HOME 
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME \ 
 	&& usermod -aG docker user \
@@ -68,18 +68,18 @@ COPY start.sh /usr/local/bin/start.sh
 
 USER user
 
-RUN code --extension-dir /home/user/.vscode/extensions --install-extension PeterJausovec.vscode-docker \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension henriiik.docker-linter \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension vscjava.vscode-java-pack \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension donjayamanne.python-extension-pack \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension donjayamanne.git-extension-pack \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension vscodevim.vim \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension redhat.vscode-yaml \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension jebbs.plantuml \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension ms-vscode.go \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension formulahendry.code-runner \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension yzhang.markdown-all-in-one \
-&&  code --extension-dir /home/user/.vscode/extensions --install-extension donjayamanne.githistory 
+RUN code --extension-dir /.vscode/extensions --install-extension PeterJausovec.vscode-docker \
+&&  code --extension-dir /.vscode/extensions --install-extension henriiik.docker-linter \
+&&  code --extension-dir /.vscode/extensions --install-extension vscjava.vscode-java-pack \
+&&  code --extension-dir /.vscode/extensions --install-extension donjayamanne.python-extension-pack \
+&&  code --extension-dir /.vscode/extensions --install-extension donjayamanne.git-extension-pack \
+&&  code --extension-dir /.vscode/extensions --install-extension vscodevim.vim \
+&&  code --extension-dir /.vscode/extensions --install-extension redhat.vscode-yaml \
+&&  code --extension-dir /.vscode/extensions --install-extension jebbs.plantuml \
+&&  code --extension-dir /.vscode/extensions --install-extension ms-vscode.go \
+&&  code --extension-dir /.vscode/extensions --install-extension formulahendry.code-runner \
+&&  code --extension-dir /.vscode/extensions --install-extension yzhang.markdown-all-in-one \
+&&  code --extension-dir /.vscode/extensions --install-extension donjayamanne.githistory 
 
 USER root
 
