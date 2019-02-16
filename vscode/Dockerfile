@@ -50,6 +50,7 @@ RUN apt-get update && apt-get -y install \
 	libxss1 \
 	libxtst6 \
 	openssh-client \
+	docker.io \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
