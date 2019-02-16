@@ -66,27 +66,22 @@ RUN useradd --create-home --home-dir $HOME user \
 
 COPY start.sh /usr/local/bin/start.sh
 
+USER user
+
 RUN code --extension-dir /usr/share/code-extensions --install-extension PeterJausovec.vscode-docker \
-&&  code --extension-dir /usr/share/code-extensions --install-extension henriik.docker-linter \
+&&  code --extension-dir /usr/share/code-extensions --install-extension henriiik.docker-linter \
 &&  code --extension-dir /usr/share/code-extensions --install-extension vscjava.vscode-java-pack \
 &&  code --extension-dir /usr/share/code-extensions --install-extension donjayamanne.python-extension-pack \
 &&  code --extension-dir /usr/share/code-extensions --install-extension donjayamanne.git-extension-pack \
 &&  code --extension-dir /usr/share/code-extensions --install-extension vscodevim.vim \
-&&  code --extension-dir /usr/share/code-extensions --install-extension redhat.vscod-yaml \
+&&  code --extension-dir /usr/share/code-extensions --install-extension redhat.vscode-yaml \
 &&  code --extension-dir /usr/share/code-extensions --install-extension jebbs.plantuml \
 &&  code --extension-dir /usr/share/code-extensions --install-extension ms-vscode.go \
 &&  code --extension-dir /usr/share/code-extensions --install-extension formulahendry.code-runner \
 &&  code --extension-dir /usr/share/code-extensions --install-extension yzhang.markdown-all-in-one \
 &&  code --extension-dir /usr/share/code-extensions --install-extension donjayamanne.githistory 
 
-
-
-
-
-
-
-
-
+USER root
 
 WORKDIR $HOME
 
