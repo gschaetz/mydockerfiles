@@ -52,7 +52,7 @@ RUN apt-get update && apt-get -y install \
 	openssh-client \
 	docker.io \
 	graphviz \
-	default-gre \
+	default-jre \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
