@@ -56,7 +56,8 @@ RUN apt-get update && apt-get -y install \
 
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
-	&& chown -R user:user $HOME
+	&& chown -R user:user $HOME \ 
+	&& usermod -aG docker user
 
 COPY start.sh /usr/local/bin/start.sh
 
