@@ -57,10 +57,14 @@ RUN apt-get update && apt-get -y install \
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME \ 
-	&& usermod -aG docker user
+	&& usermod -aG docker user \
+	&& groupmod -g 999 docker
 
 COPY start.sh /usr/local/bin/start.sh
 
 WORKDIR $HOME
 
 CMD [ "start.sh" ]
+
+RUN adduser user sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoer
