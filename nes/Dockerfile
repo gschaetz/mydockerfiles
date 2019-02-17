@@ -7,32 +7,21 @@
 # 	--device /dev/dri \
 # 	jess/nes /games/zelda.rom
 #
-FROM debian:sid
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+FROM debian:latest
+LABEL maintainer "gary schaetz"
 
 RUN apt-get update && apt-get install -y \
-	binutils \
-	ca-certificates \
-	gcc \
-	git \
-	golang \
+    fceux \
 	libgl1-mesa-dev \
 	libgl1-mesa-dri \
 	libxcursor-dev \
 	libxi-dev \
 	libxinerama-dev \
 	libxrandr-dev \
-	mercurial \
-	portaudio19-dev \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& ldconfig
 
-ENV GOPATH /go
-ENV PATH /go/bin:$PATH
-
-RUN go get github.com/fogleman/nes
-
 COPY games /games
 
-ENTRYPOINT [ "nes" ]
+ENTRYPOINT [ "/usr/games/fceux" ]
