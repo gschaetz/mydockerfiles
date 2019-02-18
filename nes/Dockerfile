@@ -12,17 +12,12 @@ LABEL maintainer "gary schaetz"
 
 RUN apt-get update && apt-get install -y \
     fceux \
-	libgl1-mesa-dev \
-	libgl1-mesa-dri \
-	libxcursor-dev \
-	libxi-dev \
-	libxinerama-dev \
-	libxrandr-dev \
 	pulseaudio \
+	libpulse0 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& ldconfig
 
 RUN mkdir /games
 
-ENTRYPOINT [ "bash" ]
+ENTRYPOINT [ "/usr/games/fceux" ]

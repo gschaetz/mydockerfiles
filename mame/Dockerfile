@@ -19,11 +19,19 @@ RUN apt-get update && apt-get install -y \
 	libxi-dev \
 	libxinerama-dev \
 	libxrandr-dev \
-	pulseaudo \
+	libpulse0 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& ldconfig
 
 RUN mkdir /games
+
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+	&& chown -R user:user $HOME \ 
+	&& usermod -aG root user \
+	&& usermod -u 1000 user \
+	&& groupmod -g 1000 user
+USER user
 
 ENTRYPOINT [ "/usr/games/mame" ]

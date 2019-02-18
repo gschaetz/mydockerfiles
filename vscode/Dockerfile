@@ -67,7 +67,6 @@ RUN useradd --create-home --home-dir $HOME user \
 COPY start.sh /usr/local/bin/start.sh
 
 USER user
-
 RUN code --extension-dir /.vscode/extensions --install-extension PeterJausovec.vscode-docker \
 &&  code --extension-dir /.vscode/extensions --install-extension henriiik.docker-linter \
 &&  code --extension-dir /.vscode/extensions --install-extension vscjava.vscode-java-pack \
@@ -80,8 +79,6 @@ RUN code --extension-dir /.vscode/extensions --install-extension PeterJausovec.v
 &&  code --extension-dir /.vscode/extensions --install-extension formulahendry.code-runner \
 &&  code --extension-dir /.vscode/extensions --install-extension yzhang.markdown-all-in-one \
 &&  code --extension-dir /.vscode/extensions --install-extension donjayamanne.githistory 
-
-USER root
 
 WORKDIR $HOME
 
