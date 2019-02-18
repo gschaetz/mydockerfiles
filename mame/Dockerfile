@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 	libxi-dev \
 	libxinerama-dev \
 	libxrandr-dev \
+	pulseaudio \
 	libpulse0 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
