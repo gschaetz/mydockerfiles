@@ -17,9 +17,12 @@ RUN apt-get update && apt-get install -y \
 
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
-	&& chown -R user:user $HOME
+	&& chown -R user:user $HOME \ 
+	&& usermod -aG root user \
+	&& usermod -u 1000 user \
+	&& groupmod -g 1000 user
+USER user
 
 WORKDIR $HOME
-USER user
 
 CMD [ "hollywood" ]

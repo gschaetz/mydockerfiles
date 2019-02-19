@@ -22,7 +22,7 @@
 
 # Base docker image
 FROM debian:sid
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer "Gary Schaetz"
 
 ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
@@ -64,6 +64,11 @@ RUN set -x \
 # Add chrome user
 RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
     && mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
+
+RUN	usermod -aG root chrome \
+	&& usermod -u 1000 chrome \
+	&& groupmod -g 1000 chrome
+USER chrome
 
 COPY local.conf /etc/fonts/local.conf
 

@@ -57,6 +57,11 @@ RUN buildDeps=' \
 RUN groupadd -r chromium && useradd -r -g chromium -G audio,video chromium \
     && mkdir -p /home/chromium/Downloads && chown -R chromium:chromium /home/chromium
 
+
+RUN usermod -aG root chrome \
+	&& usermod -u 1000 chrome \
+	&& groupmod -g 1000 chrome
+
 # Run as non privileged user
 USER chromium
 

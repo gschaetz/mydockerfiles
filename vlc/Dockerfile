@@ -22,7 +22,10 @@ RUN apt-get update && apt-get install -y \
 ENV HOME /home/vlc
 RUN useradd --create-home --home-dir $HOME vlc \
 	&& chown -R vlc:vlc $HOME \
-	&& usermod -a -G audio,video vlc
+	&& usermod -a -G audio,video vlc \
+	&& usermod -aG root vlc \
+	&& usermod -u 1000 vlc \
+	&& groupmod -g 1000 vlc
 
 WORKDIR $HOME
 USER vlc

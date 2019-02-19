@@ -1,5 +1,5 @@
 FROM debian:stretch-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer "Gary Schaetz"
 
 RUN apt-get update && apt-get install -y \
 	build-essential \
@@ -21,5 +21,13 @@ RUN git clone --depth 1 --recursive https://github.com/Swordfish90/cool-retro-te
 WORKDIR /src
 RUN qmake \
 	&& make
+
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+	&& chown -R user:user $HOME \ 
+	&& usermod -aG root user \
+	&& usermod -u 1000 user \
+	&& groupmod -g 1000 user
+USER user
 
 ENTRYPOINT [ "/src/cool-retro-term" ]
