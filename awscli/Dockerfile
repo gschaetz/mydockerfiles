@@ -17,4 +17,9 @@ RUN apk --no-cache add \
 		echo 'aws_secret_access_key = $AMAZON_SECRET_ACCESS_KEY'; \
 	} > /root/.aws/config
 
+ENV HOME /home/user
+RUN addgroup -g 1000 user \
+ && adduser -u 1000 -G user -D -h $HOME user 
+USER user
+
 ENTRYPOINT [ "aws" ]

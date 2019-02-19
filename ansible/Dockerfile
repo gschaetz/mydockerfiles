@@ -34,4 +34,9 @@ RUN builddeps=' \
 		six \
 	&& apk del --purge $builddeps
 
-ENTRYPOINT [ "ansible" ]
+ENV HOME /home/user
+RUN addgroup -g 1000 user \
+ && adduser -u 1000 -G user -D -h $HOME user 
+USER user
+
+ENTRYPOINT [ "ash" ]

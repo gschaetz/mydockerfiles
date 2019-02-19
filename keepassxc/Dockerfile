@@ -54,4 +54,9 @@ RUN	apk --no-cache add \
 		qt5-qttools \
 		ttf-dejavu
 
+ENV HOME /home/user
+RUN addgroup -g 1000 user \
+ && adduser -u 1000 -G user -D -h $HOME user 
+USER user
+
 ENTRYPOINT [ "/usr/local/bin/keepassxc" ]
