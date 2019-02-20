@@ -70,6 +70,7 @@ RUN	usermod -aG root chrome \
 	&& groupmod -g 1000 chrome
 USER chrome
 
+
 COPY local.conf /etc/fonts/local.conf
 
 # Run Chrome as non privileged user
