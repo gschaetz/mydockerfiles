@@ -26,9 +26,10 @@ RUN apt-get update && apt-get install -y \
 ENV LANG en-US
 
 COPY local.conf /etc/fonts/local.conf
-
-RUN echo 'pref("browser.tabs.remote.autostart", false);' >> /etc/firefox/syspref.js
-
+RUN echo 'pref("browser.tabs.remote.autostart", false);' >> /etc/firefox/syspref.js \
+ && chmod 777 /etc/firefox/syspref.js \
+ && chmod 777 /etc/fonts/local.conf
+ 
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME \ 
