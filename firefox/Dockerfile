@@ -23,6 +23,12 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
+ENV LANG en-US
+
+COPY local.conf /etc/fonts/local.conf
+
+RUN echo 'pref("browser.tabs.remote.autostart", false);' >> /etc/firefox/syspref.js
+
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME \ 
@@ -31,12 +37,6 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& groupmod -g 1000 user
 USER user
 
-
-ENV LANG en-US
-
-COPY local.conf /etc/fonts/local.conf
-
-RUN echo 'pref("browser.tabs.remote.autostart", false);' >> /etc/firefox/syspref.js
 
 COPY entrypoint.sh /usr/bin/startfirefox
 
