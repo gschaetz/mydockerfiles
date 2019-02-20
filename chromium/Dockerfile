@@ -58,9 +58,9 @@ RUN groupadd -r chromium && useradd -r -g chromium -G audio,video chromium \
     && mkdir -p /home/chromium/Downloads && chown -R chromium:chromium /home/chromium
 
 
-# RUN usermod -aG root chromium \
-# 	&& usermod -u 1000 chromium \
-# 	&& groupmod -g 1000 chromium
+RUN usermod -aG root chromium \
+	&& usermod -u 1000 chromium \
+	&& groupmod -g 1000 chromium
 
 # Run as non privileged user
 USER chromium
