@@ -34,6 +34,8 @@ RUN apt-get update && apt-get install -y \
       libgl1-mesa-glx \
       libpango1.0-0 \
       libv4l-0 \
+      pulseaudio \
+      libpulse0 \
       fonts-symbola \
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \

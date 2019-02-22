@@ -3,6 +3,8 @@ LABEL maintainer "Gary Schaetz"
 
 RUN apt-get update && apt-get install -y \
 	audacity \
+	pulseaudio \
+	libpulse0 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
