@@ -20,32 +20,12 @@ RUN apt-get update && apt-get install -y \
 	libxrandr-dev \
 	pulseaudio \
 	libpulse0 \
-	build-essential \
-	git \ 
-	autoconf \
-	automake \
-	libsdl2-dev \
-	libasound2-dev \
-	libfreetype6-dev \
-	zlib1g-dev \
-	libexpat1-dev \
-	libslang2-dev \
-	libncurses5-dev \
-	gcc \
-	curl \
-	ca-certificates \
+	mame \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& ldconfig
 
-RUN mkdir /games \
-&& curl -L https://github.com/amadvance/advancemame/releases/download/v3.9/advancemame-3.9.tar.gz -o /tmp/mame.tar.gz \
-&& tar -xzf /tmp/mame.tar.gz -C /usr/local/bin/ \
-&& cd /usr/local/bin/advancemame*/ \
-&& 	./configure \
-&& make -j3 \
-&& make install
-
+RUN mkdir /games 
  
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
@@ -55,4 +35,4 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& groupmod -g 1000 user
 USER user
 
-ENTRYPOINT [ "bash" ]
+ENTRYPOINT [ "b/usr/games/mame" ]
