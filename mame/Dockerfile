@@ -35,4 +35,4 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& groupmod -g 1000 user
 USER user
 
-ENTRYPOINT [ "b/usr/games/mame" ]
+ENTRYPOINT [ "/usr/games/mame" ]
