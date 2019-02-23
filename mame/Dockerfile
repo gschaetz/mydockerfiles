@@ -55,4 +55,4 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& groupmod -g 1000 user
 USER user
 
-ENTRYPOINT [ "/usr/local/bin/advmenu" ]
+ENTRYPOINT [ "bash" ]
