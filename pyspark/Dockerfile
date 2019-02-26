@@ -30,6 +30,9 @@ ENV PATH = $PATH:/usr/lib/spark-2.3.2-bin-hadoop2.6/bin/
 RUN apt-get install -y python-pip \
 && pip install pyspark jupyter
 
+# Utilities
+RUN apt-get install -y vim
+
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME \ 
