@@ -24,7 +24,10 @@ ENV PATH = $PATH:/usr/local/scala/bin
 RUN curl -LO http://apache.mirror.anlx.net/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
 && tar xzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz -C /usr/lib \
 && rm -f spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz 
-ENV PATH = $PATH:/usr/lib/spark-2.3.2-bin-hadoop2.6/bin/
+ENV PATH = $PATH:/usr/lib/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}/bin/
+ENV SPARK_HOME=/usr/lib/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}
+
+COPY ./log4j.properties ${SPARK_HOME}/conf/log4j.properties
 
 # Pyspark
 RUN apt-get install -y python-pip \
