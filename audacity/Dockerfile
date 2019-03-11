@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
 	audacity \
 	pulseaudio \
 	libpulse0 \
+        libgtk-3-0 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
