@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
 	pulseaudio \
 	libpulse0 \
         libgtk-3-0 \
+        lxappearance \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
