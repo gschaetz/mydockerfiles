@@ -68,7 +68,6 @@ RUN useradd --create-home --home-dir $HOME user \
 
 RUN adduser user sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoer
-
 COPY start.sh /usr/local/bin/start.sh
 
 USER user
