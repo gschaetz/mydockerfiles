@@ -66,8 +66,8 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& usermod -u 1000 user \
 	&& groupmod -g 1000 user
 
-#RUN adduser user sudo
-#RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoer
+RUN adduser user sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoer
 
 COPY start.sh /usr/local/bin/start.sh
 
