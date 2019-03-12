@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
 	libpulse0 \
         libgtk-3-0 \
         libgtk2.0-0 \
-        hicolor-icon-theme \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
