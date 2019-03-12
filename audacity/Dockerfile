@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 	pulseaudio \
 	libpulse0 \
         libgtk-3-0 \
-        hicolor-icon-theme \
+        libgtk2.0-0 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
