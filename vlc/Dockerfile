@@ -15,6 +15,8 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN apt-get update && apt-get install -y \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
+	libgtk-3-0 \
+    libgtk2.0-0 \
 	vlc \
 	pulseaudio \
 	libpulse0 \

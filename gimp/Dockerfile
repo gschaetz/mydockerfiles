@@ -13,6 +13,8 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
 	gimp \
+	libgtk-3-0 \
+    libgtk2.0-0 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 

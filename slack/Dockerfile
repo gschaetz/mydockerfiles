@@ -40,6 +40,7 @@ RUN echo "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie mai
 RUN apt-get update && apt-get -y install \
 	libasound2 \
 	libgtk-3-0 \
+    libgtk2.0-0 \
 	libx11-xcb1 \
 	libxkbfile1 \
 	slack-desktop \

@@ -2,6 +2,8 @@ FROM debian:latest
 
 RUN apt-get update -y && \
     apt-get install -y gnupg2 \
+    libgtk-3-0 \
+    libgtk2.0-0 \
     kdesudo && \ 
     echo "deb http://dl.bintray.com/resin-io/debian stable etcher" \
     | tee /etc/apt/sources.list.d/etcher.list && \

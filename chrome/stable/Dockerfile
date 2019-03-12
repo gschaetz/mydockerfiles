@@ -32,7 +32,8 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
 	gnupg \
-	hicolor-icon-theme \
+    libgtk-3-0 \
+    libgtk2.0-0 \
 	libcanberra-gtk* \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \

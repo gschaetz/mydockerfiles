@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	ffmpeg \
 	firefox \
+    libgtk-3-0 \
+    libgtk2.0-0 \
 	hicolor-icon-theme \
 	libasound2 \
 	libgl1-mesa-dri \

@@ -49,6 +49,8 @@ RUN apt-get update && apt-get -y install \
 	libxrender1 \
 	libxss1 \
 	libxtst6 \
+	libgtk-3-0 \
+    libgtk2.0-0 \
 	openssh-client \
 	docker.io \
 	graphviz \

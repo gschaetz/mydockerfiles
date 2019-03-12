@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y \
       chromium-l10n \
       fonts-liberation \
       fonts-roboto \
-      hicolor-icon-theme \
+      libgtk-3-0 \
+      libgtk2.0-0 \
       libcanberra-gtk-module \
       libexif-dev \
       libgl1-mesa-dri \

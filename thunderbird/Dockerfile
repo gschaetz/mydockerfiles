@@ -12,6 +12,8 @@
 FROM debian:latest
 RUN apt-get -y update \
 && apt-get install -y thunderbird \
+    libgtk-3-0 \
+    libgtk2.0-0 \
 && rm -rf /var/lib/apt/lists/* \
 && apt-get autoremove -y
 

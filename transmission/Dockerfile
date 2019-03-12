@@ -11,6 +11,8 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 # machine parsable metadata, for https://github.com/pycampers/dockapt
 RUN apk --no-cache add \
 	transmission-daemon \
+		gtk+3.0 \
+		gtk+2.0 \
 	&& mkdir -p /transmission/download \
 		/transmission/watch \
 		/transmission/incomplete \
