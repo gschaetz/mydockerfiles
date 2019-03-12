@@ -16,6 +16,8 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN apk --no-cache add \
 	--repository https://dl-3.alpinelinux.org/alpine/edge/testing \
 	libreoffice \
+	gtk+3.0 \
+	gtk+2.0 \
 	ttf-dejavu
 
 ENV HOME /home/user
