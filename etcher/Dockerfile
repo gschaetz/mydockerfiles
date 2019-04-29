@@ -20,4 +20,4 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& groupmod -g 1000 user
 USER user
 
-CMD ["etcher-electron"]
+CMD ["balena-etcher-electron"]
