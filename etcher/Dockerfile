@@ -4,12 +4,13 @@ RUN apt-get update -y && \
     apt-get install -y gnupg2 \
     libgtk-3-0 \
     libgtk2.0-0 \
-    kdesudo && \ 
-    echo "deb http://dl.bintray.com/resin-io/debian stable etcher" \
-    | tee /etc/apt/sources.list.d/etcher.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61 && \
+    apt-transport-https \
+    ca-certificates \
+    kdesudo && \
+    echo "deb https://deb.etcher.io stable etcher" | sudo tee /etc/apt/sources.list.d/balena-etcher.list && \
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61 && \
     apt-get update -y && \
-    apt-get install -y etcher-electron
+    apt-get install -y balena-etcher-electron
 
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
