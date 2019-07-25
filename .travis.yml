@@ -1,7 +1,8 @@
 ---
 sudo: required
 notifications:
-  email: true
+  email:
+    - gschaetzjunk@gmail.com
 services:
   - docker
 install: sudo apt-get install parallel 
