@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 set -e
 set -o pipefail
 
@@ -69,13 +70,12 @@ main(){
 	# files=( $(find -L . -iname '*Dockerfile' | sed 's|./||' | sort) )
 	# unset IFS
 	# echo $files
-
+        i=1
 	images=''
 	count=$(curl https://registry.hub.docker.com/v2/repositories/gschaetz/?page=1 2>/dev/null |jq '."count"') > /dev/null 2>&1
 	count=$(($count / 10 ))
 	while [[ $i -le $count ]]
 	do 
-		i=$((i+1))
 		IFS=$'\n'
 		temp=( $(curl https://registry.hub.docker.com/v2/repositories/$REPO_URL/?page=$i  2>/dev/null|jq '.results[] | .last_updated+","+.name' | sed 's/"//g') ) > /dev/null 2>&1
 		unset IFS
@@ -83,7 +83,8 @@ main(){
 			images=("${images[@]}" "${temp[@]}")
 		else    
 			images=$temp
-		fi
+                fi  
+                i=$((i+1))
 	done
 
 	IFS=$'\n' 
