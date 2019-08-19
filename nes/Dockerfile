@@ -7,7 +7,7 @@
 # 	--device /dev/dri \
 # 	jess/nes /games/zelda.rom
 #
-FROM debian:latest
+FROM debian:stretch
 LABEL maintainer "gary schaetz"
 
 RUN apt-get update && apt-get install -y \
