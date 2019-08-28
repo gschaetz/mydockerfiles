@@ -55,6 +55,7 @@ RUN apt-get update && apt-get -y install \
 	docker.io \
 	graphviz \
 	default-jre \
+        default-jdk \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
