@@ -72,7 +72,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoer
 COPY start.sh /usr/local/bin/start.sh
 
 USER user
-RUN code --extension-dir /.vscode/extensions --install-extension PeterJausovec.vscode-docker \
+RUN code --extension-dir /.vscode/extensions --install-extension ms-azuretools.vscode-docker \
 &&  code --extension-dir /.vscode/extensions --install-extension henriiik.docker-linter \
 &&  code --extension-dir /.vscode/extensions --install-extension vscjava.vscode-java-pack \
 &&  code --extension-dir /.vscode/extensions --install-extension donjayamanne.python-extension-pack \
@@ -83,7 +83,15 @@ RUN code --extension-dir /.vscode/extensions --install-extension PeterJausovec.v
 &&  code --extension-dir /.vscode/extensions --install-extension ms-vscode.go \
 &&  code --extension-dir /.vscode/extensions --install-extension formulahendry.code-runner \
 &&  code --extension-dir /.vscode/extensions --install-extension yzhang.markdown-all-in-one \
-&&  code --extension-dir /.vscode/extensions --install-extension donjayamanne.githistory 
+&&  code --extension-dir /.vscode/extensions --install-extension donjayamanne.githistory \
+&&  code --extension-dir /.vscode/extensions --install-extension vscjava.vscode-java-pack \
+&&  code --extension-dir /.vscode/extensions --install-extension vscjava.vscode-java-test \
+&&  code --extension-dir /.vscode/extensions --install-extension wholroyd.jinja \
+&&  code --extension-dir /.vscode/extensions --install-extension redhat.java \
+&&  code --extension-dir /.vscode/extensions --install-extension davidanson.vscode-markdownlint \
+&&  code --extension-dir /.vscode/extensions --install-extension vscjava.vscode-maven \
+&&  code --extension-dir /.vscode/extensions --install-extension ms-python.python \
+&&  code --extension-dir /.vscode/extensions --install-extension visualstudioexptteam.vscodeintellicode
 
 WORKDIR $HOME
 
