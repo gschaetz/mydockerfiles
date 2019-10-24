@@ -81,7 +81,8 @@ main(){
 		if [[ -n $images ]]; then
 			images=("${images[@]}" "${temp[@]}")
 		else    
-			images=${temp}
+			echo "gary"$temp
+			images=$temp
 		fi  
 	done
 	echo ${images[@]}
