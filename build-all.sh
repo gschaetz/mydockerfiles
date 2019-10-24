@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 set -o pipefail
-set +x
+set -x
 
 SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 REPO_URL="gschaetz"
