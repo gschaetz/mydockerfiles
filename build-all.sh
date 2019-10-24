@@ -74,6 +74,7 @@ main(){
 	do 
 		IFS=$'\n'
 		temp=( $(curl https://registry.hub.docker.com/v2/repositories/$REPO_URL/$i  2>/dev/null|jq '.last_updated+","+.name' | sed 's/"//g') ) > /dev/null 2>&1
+		echo $temp
 		unset IFS
 		if [[ $temp == '","' ]]; then
 			temp="0000,$i"
