@@ -5,7 +5,7 @@ MAINTAINER gschaetz
 RUN apt-get update -y
 RUN apt-get install -y apt-utils curl default-jre
 
-ARG SPARK_VERSION=2.3.3
+ARG SPARK_VERSION=2.4.4
 ARG SCALA_VERSION=2.12.7
 ARG HADOOP_VERSION=2.6
 
