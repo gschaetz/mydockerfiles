@@ -78,12 +78,12 @@ main(){
 			temp="0000,$i"
 		fi 
 		if [[ -n $images ]]; then
-			#images="${images[@]}\n${temp}"
 			images=("${images[@]}" "${temp[@]}")
 		else    
 			images=${temp}
 		fi  
 	done
+	echo ${images[@]}
 
 	IFS=$'\n' 
 	sortimages=($(sort <<< "${images[*]}") )
