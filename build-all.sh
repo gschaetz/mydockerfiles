@@ -73,26 +73,21 @@ main(){
 	for i in ${tempimages[@]}
 	do 
 		temp=( $(curl https://registry.hub.docker.com/v2/repositories/gschaetz/$i/  2>/dev/null|jq '.last_updated+","+.name' | sed 's/"//g') ) > /dev/null 2>&1
-		curl -vvv https://registry.hub.docker.com/v2/repositories/gschaetz/$i/  
-		echo $temp
 		if [[ $temp == '","' ]]; then
 			temp="0000,$i"
 		fi 
 		if [[ -n $images ]]; then
 			images=("${images[@]}" "${temp[@]}")
 		else    
-			echo "gary"$temp
 			images=$temp
 		fi  
 	done
-	echo ${images[@]}
 
 	IFS=$'\n' 
 	sortimages=($(sort <<< "${images[*]}") )
 	dockerfiles=($(find -L . -iname '*dockerfile' | sed 's|./||' | sort))
 	unset IFS
 	
-	echo ${sortimages[@]}
 	n=0
 	for i in ${sortimages[@]}
 	do
@@ -114,16 +109,16 @@ main(){
 	echo ${files[@]}
 
 	# build all dockerfiles
-	# echo "Running in parallel with ${JOBS} jobs."
-	# parallel --tag --verbose --ungroup -j"${JOBS}" $SCRIPT dofile "{1}" ::: "${files[@]}"
+	echo "Running in parallel with ${JOBS} jobs."
+	parallel --tag --verbose --ungroup -j"${JOBS}" $SCRIPT dofile "{1}" ::: "${files[@]}"
 
-	# if [[ ! -f $ERRORS ]]; then
-	# 	echo "No errors, hooray!"
-	# else
-	# 	echo "[ERROR] Some images did not build correctly, see below." >&2
-	# 	echo "These images failed: $(cat $ERRORS)" >&2
-	# 	exit 1
-	# fi
+	if [[ ! -f $ERRORS ]]; then
+		echo "No errors, hooray!"
+	else
+		echo "[ERROR] Some images did not build correctly, see below." >&2
+		echo "These images failed: $(cat $ERRORS)" >&2
+		exit 1
+	fi
 }
 
 run(){
