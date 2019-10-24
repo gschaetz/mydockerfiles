@@ -113,16 +113,16 @@ main(){
 	echo ${files[@]}
 
 	# build all dockerfiles
-	echo "Running in parallel with ${JOBS} jobs."
-	parallel --tag --verbose --ungroup -j"${JOBS}" $SCRIPT dofile "{1}" ::: "${files[@]}"
+	# echo "Running in parallel with ${JOBS} jobs."
+	# parallel --tag --verbose --ungroup -j"${JOBS}" $SCRIPT dofile "{1}" ::: "${files[@]}"
 
-	if [[ ! -f $ERRORS ]]; then
-		echo "No errors, hooray!"
-	else
-		echo "[ERROR] Some images did not build correctly, see below." >&2
-		echo "These images failed: $(cat $ERRORS)" >&2
-		exit 1
-	fi
+	# if [[ ! -f $ERRORS ]]; then
+	# 	echo "No errors, hooray!"
+	# else
+	# 	echo "[ERROR] Some images did not build correctly, see below." >&2
+	# 	echo "These images failed: $(cat $ERRORS)" >&2
+	# 	exit 1
+	# fi
 }
 
 run(){
