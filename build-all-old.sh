@@ -5,7 +5,7 @@ set -o pipefail
 SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 REPO_URL="gschaetz"
 JOBS=${JOBS:-2}
-BUILDNUM=${BUILDNUM:-5}
+BUILDNUM=${BUILDNUM:-1}
 
 ERRORS="$(pwd)/errors"
 
@@ -64,49 +64,50 @@ echo
 }
 
 main(){
-	i=1
+	# get the dockerfiles
+	# IFS=$'\n'
+	# files=( $(find -L . -iname '*Dockerfile' | sed 's|./||' | sort) )
+	# unset IFS
+	# echo $files
+        i=1
 	images=''
-	IFS=$'\n'
-	tempimages=($(find ./ -maxdepth 1 -type d \( ! -name .git \) -not -path "./" | sed 's|./||' ) )
-	unset IFS
-	for i in ${tempimages[@]}
+        count=$(find ./ -type d -maxdepth 1 | sed 's|./||' | wc -l) 
+	count=$(curl https://registry.hub.docker.com/v2/repositories/gschaetz/?page=1 2>/dev/null |jq '."count"') > /dev/null 2>&1
+	count=$(($count / 10 ))
+	while [[ $i -le $count ]]
 	do 
 		IFS=$'\n'
-		temp=( $(curl https://registry.hub.docker.com/v2/repositories/$REPO_URL/$i  2>/dev/null|jq '.last_updated+","+.name' | sed 's/"//g') ) > /dev/null 2>&1
+		temp=( $(curl https://registry.hub.docker.com/v2/repositories/$REPO_URL/?page=$i  2>/dev/null|jq '.results[] | .last_updated+","+.name' | sed 's/"//g') ) > /dev/null 2>&1
 		unset IFS
-		if [[ $temp == '","' ]]; then
-			temp="0000,$i"
-		fi 
 		if [[ -n $images ]]; then
-			#images="${images[@]}\n${temp}"
 			images=("${images[@]}" "${temp[@]}")
 		else    
-			images=${temp}
-		fi  
+			images=$temp
+                fi  
+                i=$((i+1))
 	done
 
 	IFS=$'\n' 
 	sortimages=($(sort <<< "${images[*]}") )
 	dockerfiles=($(find -L . -iname '*dockerfile' | sed 's|./||' | sort))
 	unset IFS
-	
+
 	n=0
 	for i in ${sortimages[@]}
 	do
-		image=$(echo $i | cut -d',' -f2)
-		for x in ${dockerfiles[@]}
-		do
-			docker=$(echo $x | cut -d'/' -f1)
-			if [[ $image == $docker ]]; then
-			files=("${files[@]}" "${x[@]}")
-			n=$[$n+1]
-			fi  
-		done
-
-		# #n=$[$n+1]
-		if [[ n -ge $BUILDNUM ]]; then
-			break
-		fi
+	image=$(echo $i | cut -d',' -f2)
+	for x in ${dockerfiles[@]}
+	do
+		docker=$(echo $x | cut -d'/' -f1)
+		if [[ $image == $docker ]]; then
+		files=("${files[@]}" "${x[@]}")
+		n=$[$n+1]
+		fi  
+	done
+	#n=$[$n+1]
+	if [[ n -ge $BUILDNUM ]]; then
+		break
+	fi
 	done
 	echo ${files[@]}
 
