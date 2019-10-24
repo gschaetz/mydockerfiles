@@ -68,6 +68,8 @@ main(){
 	images=''
 	IFS=$'\n'
 	tempimages=($(find ./ -maxdepth 1 -type d \( ! -name .git \) -not -path "./" | sed 's|./||' ) )
+	echo ${tempimages[@]}
+	exit
 	unset IFS
 	for i in ${tempimages[@]}
 	do 
