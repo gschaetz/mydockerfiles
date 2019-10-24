@@ -72,11 +72,9 @@ main(){
 	unset IFS
 	for i in ${tempimages[@]}
 	do 
-		IFS=$'\n'
 		temp=( $(curl https://registry.hub.docker.com/v2/repositories/gschaetz/$i  2>/dev/null|jq '.last_updated+","+.name' | sed 's/"//g') ) > /dev/null 2>&1
-		curl -vvv https://registry.hub.docker.com/v2/repositories/gschaetz/$i  2>/dev/null|jq '.last_updated+","+.name' | sed 's/"//g' 		
+		curl -vvv https://registry.hub.docker.com/v2/repositories/gschaetz/$i  
 		echo $temp
-		unset IFS
 		if [[ $temp == '","' ]]; then
 			temp="0000,$i"
 		fi 
