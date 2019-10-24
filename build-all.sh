@@ -68,8 +68,6 @@ main(){
 	images=''
 	IFS=$'\n'
 	tempimages=($(find ./ -maxdepth 1 -type d \( ! -name .git \) -not -path "./" | sed 's|./||' ) )
-	echo ${tempimages[@]}
-	exit
 	unset IFS
 	for i in ${tempimages[@]}
 	do 
@@ -92,6 +90,7 @@ main(){
 	dockerfiles=($(find -L . -iname '*dockerfile' | sed 's|./||' | sort))
 	unset IFS
 	
+	echo ${sortimages[@]}
 	n=0
 	for i in ${sortimages[@]}
 	do
