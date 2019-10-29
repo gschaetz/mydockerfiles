@@ -1,5 +1,4 @@
 FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apk --no-cache add \
 	ca-certificates \
@@ -8,6 +7,9 @@ RUN apk --no-cache add \
 	python \
 	py2-pip \
 	&& pip install awscli \
+        && bash \
+        && bash-doc \
+        && bash-completion \
 	&& mkdir -p /root/.aws \
 	&& { \
 		echo '[default]'; \
@@ -19,7 +21,7 @@ RUN apk --no-cache add \
 
 ENV HOME /home/user
 RUN addgroup -g 1000 user \
- && adduser -u 1000 -G user -D -h $HOME user 
+ && adduser -u 1000 -G user -s /bin/bash -D -h $HOME user 
 USER user
 
 ENTRYPOINT [ "aws" ]
