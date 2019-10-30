@@ -1,6 +1,8 @@
 FROM alpine:latest
 
-RUN apk --no-cache add \
+RUN apk update \
+    apk upgrade \
+    apk --no-cache add \
 	ca-certificates \
 	groff \
 	less \
