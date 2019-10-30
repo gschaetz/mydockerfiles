@@ -6,12 +6,13 @@ RUN apk update \
 	ca-certificates \
 	groff \
 	less \
-	python \
-	py2-pip \
+        python \
+        python-dev \
+        py-pip \
+        bash \
+        bash-doc \
+        bash-completion \
 	&& pip install awscli \
-        && bash \
-        && bash-doc \
-        && bash-completion \
 	&& mkdir -p /root/.aws \
 	&& { \
 		echo '[default]'; \
@@ -26,4 +27,7 @@ RUN addgroup -g 1000 user \
  && adduser -u 1000 -G user -s /bin/bash -D -h $HOME user 
 USER user
 
-ENTRYPOINT [ "bash" ]
+RUN echo "complete -C '/usr/bin/aws_completer' aws" >> ~/.bashrc
+
+
+ENTRYPOINT [ "/bin/bash" ]
