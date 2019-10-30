@@ -30,4 +30,4 @@ USER user
 RUN echo "complete -C '/usr/bin/aws_completer' aws" >> ~/.bashrc
 
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "aws" ]
