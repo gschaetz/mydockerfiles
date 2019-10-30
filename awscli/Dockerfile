@@ -24,4 +24,4 @@ RUN addgroup -g 1000 user \
  && adduser -u 1000 -G user -s /bin/bash -D -h $HOME user 
 USER user
 
-ENTRYPOINT [ "aws" ]
+ENTRYPOINT [ "bash" ]
