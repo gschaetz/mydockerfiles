@@ -28,8 +28,8 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& usermod -aG root user \
 	&& usermod -u 1000 user \
 	&& groupmod -g 1000 user
-USER root
+USER user
 
 WORKDIR $HOME
 
-CMD [ "bash" ]
+CMD [ "/usr/bin/hollywood" ]
