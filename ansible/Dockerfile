@@ -25,7 +25,6 @@ RUN builddeps=' \
 	bash \
 	py-paramiko \
 	py-yaml \
-	py-jinja2 \
 	py-httplib2 \
 	$builddeps \
 	&& pip install --upgrade pip \
