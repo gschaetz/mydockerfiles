@@ -81,4 +81,4 @@ USER chrome
 
 # Autorun chrome
 ENTRYPOINT [ "google-chrome" ]
-CMD [ "--user-data-dir=/data" ]
+CMD [ "--user-data-dir=/data --use-gl=swiftshader" ]
