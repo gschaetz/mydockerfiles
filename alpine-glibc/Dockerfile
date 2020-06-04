@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM openjdk:8-jdk-alpine3.9
 
 ENV LANG=C.UTF-8
 
